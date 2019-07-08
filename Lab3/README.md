@@ -111,8 +111,8 @@ FROM     customer,
 WHERE    c_mktsegment = 'HOUSEHOLD' 
 AND      c_custkey = o_custkey 
 AND      l_orderkey = o_orderkey 
-AND      o_orderdate < DATE '1995-03-02' 
-AND      l_shipdate >  DATE '1995-03-02' 
+AND      o_orderdate < DATE '1996-03-02' 
+AND      l_shipdate >  DATE '1996-03-02' 
 GROUP BY l_orderkey, 
          o_orderdate, 
          o_shippriority 
