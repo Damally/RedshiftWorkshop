@@ -80,7 +80,7 @@ Credentials to log into the Redshift cluster.
 **Password:**  `password` (password you defined in the CloudFormation step.)
 
 
-You should now connect to your Amazon Redshift Cluster. You now can move to the Lab 3. 
+You should now connect to your Amazon Redshift Cluster. You now can move to the Lab 2. 
 
 **Important** If you leave earlier or don't have plans to complete the remaining Labs. Make sure you delete the resources created in your acoount to avoid any unespected charges. Please refer to `Remove CloudFormation Stack`  for instructions on how to remove the CloudFormation Stack. 
 
