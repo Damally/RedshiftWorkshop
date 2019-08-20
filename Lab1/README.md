@@ -10,11 +10,11 @@ In this lab you will launch a new Redshift Cluster, Install the client tool of y
 
 
 ## Prerequisites
-In this exercise, we will launch a Redshift Cluster in your account. Using a Cloud Formation template provided in the link bellow. For better performance and avoid cost transfer between Amazon Redshift cluster and S3, make sure you are in the US-EAST-1 region.
+In this lab, you will launch a Redshift Cluster in your account using a Cloud Formation template provided in the link bellow. For better performance and avoid cost transfer between Amazon Redshift cluster and S3, make sure you are in the US-EAST-1 region.
 
 
 ## Cloud Formation
-In the Cloudformation template provided, we will launch a Redshift Cluster in your account. We will also need to create resources in your account that are required for security and be able to access the cluster from a public endpoint. 
+Using the Cloudformation template provided, we will launch a Redshift Cluster in your account. The CloudFormation template will create resources in your account that are required for security and to make your cluster accessible from public endpoint. 
 
 Here are the following resources we will create in your account
 * Amazon Redshift Cluster with 2 dc.xlarge nodes  
