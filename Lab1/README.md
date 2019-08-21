@@ -33,6 +33,8 @@ Go ahead and click on `Launch Stack` to launch a Redshift Cluster in your accoun
 
 On Specify stack details, provide a `MasterUserName` and `MasterUserPassword` of your choice. Leave all the other parameters unchanged and choose next. 
 
+MasterUserPassword Must contain at least 1 lowercase letter. Password may not contain ",/,@, or unprintable characters.
+
 ![Cloud Formation](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/CloudFormationParameter1.jpg "Cloud Formation Template")
 
 In the `Configure stack options`, Click Next 
@@ -53,9 +55,6 @@ You will need to install a client tool to be able to connect on your Amazon Reds
 * [Aginity - Windows Only](https://www.aginity.com/main/workbench-for-amazon-redshift/)
 
 
- You also can query the data in your Amazon Redshift cluster directly from your AWS Management console, using the new `Query Editor`. 
-
- ![Query Editor](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/queryeditor.jpg "Query Editor")
 
 ## Connecting to your Redshift Cluster
 

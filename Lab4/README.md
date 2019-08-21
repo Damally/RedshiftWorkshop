@@ -1,7 +1,7 @@
 # LAB 4 - Querying S3 Data Lake using Redshift Spectrum 
-Now you will learn how to setup your Amazon Redshift Cluster to query historical Data on S3 Data Lake with Redshift Spectrum.  
+Now you will learn how to setup your Amazon Redshift Cluster to query Data on S3 Data Lake with Redshift Spectrum.  
 
-In this lab, you will leverage external tables to query data stored in Amazon S3 using parquet file format. The external tables definition are created and kept in AWS Glue catalog. In this Lab your learn how to create database catalog in Glue, create crawler jobs that will detect tables and paritions in S3 and Query data on S3 using Redshift local tables and external tables via Spectrum. 
+In this lab, you will use external tables to query data stored in Amazon S3 using parquet file format. The external tables definition are created and kept in AWS Glue catalog. In this Lab you will learn how to create database catalog in Glue, create crawler jobs that will detect tables and partitions based on data stored in S3. Later you will query data on S3 using external tables via Amazon Redshift Spectrum. 
 
 
 ## Contents
@@ -13,23 +13,23 @@ In this lab, you will leverage external tables to query data stored in Amazon S3
 
 ## Create external database and schema
 
-You will now create the external database in AWS Glue and the external schema in Amazon Redshift to make the external tables visible for queries. 
+You will now create the external database in AWS Glue and the external schema in Amazon Redshift that will make the external tables visible for queries when using Amazon Redshift Spectrum. 
 
-Log in to the AWS Console. On AWS console main page, go to Services and select AWS Glue or type Glue in the search field. Choose AWS Glue when you see in the results. 
+Log in to the AWS Console. On AWS console main page, go to Services and select AWS Glue or type Glue in the search field. Choose AWS Glue from the search. 
 
-On AWS Glue console choose Databases on the left-hand side and choose Add Database option.  
-Specify a Database Name and choose `Create`  
+1. On AWS Glue console choose `Databases` on the left-hand side and choose `Add Database` option.  
+2. Type a database name in the `Database name` field and choose `Create`  
 
-**Important** Ensure you remember the database name you specified as it will be used in a later section. 
+**Important** Take note of the database name you chose as it will be used in a later section. 
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/gluedatabase.jpg "Database Name")
 
 
 ## Create clawler Job using AWS Glue
 
-After creating the database in AWS Glue, you will now create a crawler job that will scan an S3 location where the parquet files are stored and then create external tables automatically for you with correct properties. Later you will use these tables in Amazon Redshift Spectrum. The integration with Data Lake on S3 will allow you to query data on tables stored either on Amazon Redshift or S3 using Amazon Redshift Spectrun through external tables. 
+After creating the database in AWS Glue, you will now create a crawler job that will scan an S3 bucket where the parquet files are stored and then create external tables automatically for you with correct properties. Later you will query these external tables in Amazon Redshift Spectrum. The integration with Data Lake on S3 will allow you to query data on tables stored either on Amazon Redshift or S3 using Amazon Redshift Spectrun through external tables. 
 
-While still in the AWS Glue console, choose Crawlers on the left-hand side and then **`Add crawler`**
+While still in the AWS Glue console, choose `Crawlers` on the left-hand side and then **`Add crawler`**
 
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/addcrawlerJob.jpg "Add Crawler")
@@ -38,21 +38,21 @@ Specify the **`Crawler Name`**
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/crawlername.jpg "Crawler Name")
 
-On Specify crawler source type, choose Data Stores
+On Specify crawler source type, choose `Data Stores` and click next. 
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/crawlersource.jpg "Crawler Source")
 
-On **`Add a data store`**  select S3 as your data store, select the option `Specified path in another account`, and specify the following path in the `Include path` s3://reinvent-hass/historical-parquet. Choose next 
+On **`Add a data store`**  select S3 as your data store, select the option **`Specified path in another account`**, and use the following path in the **`Include path`** field. s3://reinvent-hass/historical-parquet. and **`Choose next`** 
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/crawlerdatastore.jpg "Crawler Data Store")
 
-In the **`Add another data store`** left the option **`No`** selected and choose next: 
+In the **`Add another data store`** leave the option **`No`** selected and choose next: 
 
-In the **`Choose an IAM role`** choose the option **`Create an IAM role`**. Specicy the role name in the text field.
+In the **`Choose an IAM role`** choose the option **`Create an IAM role`**. Specicy the role name in the field and choose `Next`.
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/glueIAMRole.jpg "Create IAM role")
 
-On **`Create a schedule for this crawler`** choose the option **`Run on demand`** and choose **`Next`**
+On **`Create a schedule for this crawler`** choose the option **`Run on demand`** and than **`Next`**
 
 In **`Configure the crawler's output`**, choose the Database created in the previous step and leave the other options default. Choose **`Next`** 
 
@@ -65,7 +65,7 @@ In the Review all the steps, choose **`Finish`**
 
 Now it is time to run the crawler Job so that AWS Glue can scan the files on S3 and detect the tables automactically.
 
-Select the Job name using the check box and choose `Run Crawler`. 
+Select the Job name using the check box and choose **`Run Crawler`**. 
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/runcrawler.jpg "Run crawler Job")
 
@@ -81,7 +81,8 @@ Choose Tables on the left-hand side and review the tables added. Hit the refresh
 
 Choose one of the tables to see the schema definition and properties. 
 
-On the same screen on right top corner, choose `View Partitions` to view the partitions detected automatically by the crawler. Notice the year and month matches with the S3 partitioning using the field x_yearmonth and the values year and month on tables lineitem and order. The partitioning on S3 will help reduce the number of files Redshift Spectrum has to scan when querying the data on S3. 
+On the same screen on right top corner, click **`View Partitions`** button to view the partitions detected automatically by the crawler.  
+Notice the `year` and `month` matches with the S3 partitioning using the fields `l_yearmonth` and `o_l_yearmonth` values year and month on tables `lineitem` and `order`. The partitioning will help reduce the number of files Redshift Spectrum has to scan when querying the data on S3. 
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/partitions.jpg "Review Partitions")
 
@@ -90,7 +91,7 @@ On the same screen on right top corner, choose `View Partitions` to view the par
 
 Open the Redshift Client tool of your choice you installed in the previous steps. 
 
-You will now create the external schema on Redshift that will associate with the tables discoverd by the AWS Glue Crawler executed in the previous step. The external tables properties are kept in the AWS Glue catalog and it is integrated with Amazon Redshift and Redshift Spectrum. 
+You will now create the external schema on Redshift that will associate with the tables discoverd by the `AWS Glue Crawler` executed in the previous step. The external tables properties are kept in the AWS Glue catalog and it is integrated with Amazon Redshift Spectrum. 
 
  Execute the following query to return the external schemas and objects. We haven't created the external schema yet. The external schema creation will associate Amazon Redshift with the external catalog in AWS Glue. The result expected should be 0 rows.
 
@@ -102,21 +103,23 @@ JOIN SVV_EXTERNAL_TABLES AS T ON S.schemaname = T.schemaname;
 
 To create the external tables, first you will need to create an external schema that will reference the tables discovered by the crawlers in AWS Glue. Execute the following command to create the external schema that will reference the external tables.  
 
-**Important** Ensure that you specify the same database name you specified when you created the database on AWS Glue. If you are unsure, go back to AWS Console, AWS Glue and choose Databases to confirm the database name. 
-
-*** iam_role *** You will need the role arn with permission to access the files on S3. Use the steps bellow to retrieve the role arn assigned for the Redshift Cluster. 
-
-Replace the parameters `database` and `iam_role` with the values in your enviroment.
-
-Note sure how to access the IAM role associated with your Amazon Redshift Cluster?  Access to get the steps on how to retrieve the IAM role associated with your Amazon Redshift Cluster. Please access [`Redshift IAM Roles`](https://github.com/andrehass/RedshiftWorkshop/blob/master/IAM-role.md)
-
 ```SQL
 /* Create External Schema and reference Glue Database */
 create external schema spectrum
 from data catalog
-database 'your-glue-database-name'
-iam_role 'MyRedshiftRole'
+database '<your-glue-database-name>'
+iam_role '<redshift-role-assigned-to-your-cluster>'
 ``` 
+
+**Important** for the `database` parameter make sure you type the same database name you defined when you created the database on AWS Glue. If you are unsure, go back to AWS Console, AWS Glue and choose Databases to confirm the database name. 
+
+*** iam_role *** You will need the role arn with permission to access the files on S3. Use the steps bellow to retrieve the role arn assigned for the Redshift Cluster. 
+
+Replace the parameters `database` and `iam_role` with the values from your enviroment.
+
+Not sure how to access the IAM role associated with your Amazon Redshift Cluster?  Access to get the steps on how to retrieve the IAM role associated with your Amazon Redshift Cluster. Please access [`Redshift IAM Roles`](https://github.com/andrehass/RedshiftWorkshop/blob/master/IAM-role.md)
+
+
 
 Now you have schema that references the tables discovered by the AWS Glue crawler in the previous steps. Execute the following query again to see the tables and schema. 
 
@@ -136,12 +139,14 @@ SVV_EXTERNAL_PARTITIONS;
 
 Now you will Query data using Redshift Spectrum and join with tables stored localy in Amazon Redshift. 
 
-The most common use for Redshift Spectrum is when customers have cold and warm data and they need to offload the cold data to S3. Cold data stored in s3, can be queried using external table through Redshift Spectrum. Whereas the data stored local in Redshift only contain frequently accessed warm data, used by users and for daily reports. 
-In this Lab your Redshift Cluster stores data between 1996-01 and 1998-08 year/month. The cold data has been offloaded to S3 and contains historical data from 1992-01 through 1995-12. You will be able to query the historical data via Redshift Spectrum. 
+The most common use for Redshift Spectrum is when customers have cold and warm data and they need to offload the cold data to S3. Cold data stored in s3, can be queried using external table through Redshift Spectrum. Whereas the data stored local in Redshift only contain frequently accessed warm data, used by users and for daily reports.  
+
+In this Lab your Redshift Cluster stores data `between 1996-01 and 1998-08` year/month. The cold data has been offloaded to S3 and contains cold/historical data from `1992-01 through 1995-12`. You will be able to query the cold data via Redshift Spectrum. 
+
 The data stored on S3 uses parquet file format partitioned by month and year on the fields o_yearmonth, l_yearmonth for the tables orders and lineitem respectively. S3 stores historical data from 1992-01 through 1995-12. 
 
 
-Run the query bellow to confirm that are no data on field year month that are less than 1996-01 for tables orders and lineitem in Redshift. It should return zero rows.
+Run the query bellow to confirm that are no data before 1996-01 for tables orders and lineitem  stored in Amazon Redshift. It should return zero rows.
 
 ```SQL
 /* Table orders */ 
@@ -157,7 +162,7 @@ HAVING l_yearmonth < '1996-01'
 ORDER BY l_yearmonth;
 
 ```
-Now execute the same query using Redshift Spectrum Tables. Please notice that there is a schema called spectrum in front of the table name. This is the external schema name you created earlier.  It is expected to return values as the historical date is in S3. Redshift Spectrum is being used to query data on Data lake.
+Now execute the same query using Amazon Redshift Spectrum Tables. Please notice that there is a schema called spectrum in front of the table name. This is the external schema name you created earlier to access external tables. It is expected to return values as the historical date is stored in S3. Redshift Spectrum is being used to query data on Data lake.
 
 ```SQL
 /* Spectrum orders table */
@@ -173,7 +178,9 @@ HAVING l_yearmonth < '1996-01'
 ORDER BY l_yearmonth;
 ```
 
-Now you will run a Query on the external table lineitem to get historical data on S3. That means any data with month and year below 1996-01 is stored on S3 and will be returned using external tables. Query to compute the revenue based on discount applied. 
+Now you will run a Query on the external table **`lineitem`** to get historical data on S3. That means any data with month and year before 1996-01 is stored on S3 and will be returned using external tables. 
+
+Query to compute the revenue based on discount applied. 
 
 ```SQL
 SELECT (l_extendedprice * l_discount) as revenue
@@ -183,9 +190,12 @@ AND l_discount between 0.04 - 0.01 and 0.04 + 0.01
    AND l_quantity < 24;
 ```
 
-Now for the next Query, you will retrieve results using Redshift Spectrum and join with local tables stored in Redshift(dimensions). The tables stored in Redshift Cluster are; **nation**, **customer** and **supplier**. Tables **orders** and **lineitem** have most current data on Redshift Cluster using distribution style key so that they data is spread evenly across the nodes. Historical data with the date less than 1996-01 is stored on S3 as parquet format. Remember that you will be able to access through external tables in schema `spectrum`; **orders** and **lineitem** stored on S3.  
+Now for the next Query, you will retrieve results using Redshift Spectrum and join with local tables stored in Redshift(dimensions).  
+The tables stored in Redshift Cluster are; **nation**, **customer** and **supplier**. Tables **orders** and **lineitem** have most current data stored in Redshift Cluster and is using distribution style `key` so that they data is distributed across the nodes/slices.   Historical data with the dates before 1996-01 is stored on S3 using parquet format. Remember that you will be able to access this data through external tables in schema `spectrum`; **orders** and **lineitem**. 
 
-You will create a view object with an UNION between local tables in Amazon Redshift and external tables in Redshift Spectrum. This approach allows the users submit a query to the view instead of writing the SQL statement to join both tables. With the View you will be able to access orders and lineitem data from both tables in Amazon Redshift and S3 Data Lake with Redshift Spectrum at the same time. Views with schema binding allows you to change your view without checking for dependencies for the objects specified in the view. It gives you flexibility to add or remove collumns for your queries on S3. 
+You will now create a view object with an UNION between local tables in Amazon Redshift and external tables in Redshift Spectrum.   
+This approach allows the users submit a query using the `View object` instead of writing the SQL statement to join both tables.  
+Using the `View` you will be able to access orders and lineitem data from both tables in Amazon Redshift and S3 Data Lake with Redshift Spectrum at the same time. In addition Views defined  with `schema binding` option allows you to change your view without checking for   objects dependencies for the SQL statements specified in the view. It gives you flexibility to add or remove collumns for your queries on S3. 
 
 ```SQL
 /* Create view to access data stored in orders table in Redshift and Redshift Spectrum */
@@ -207,7 +217,7 @@ FROM spectrum.lineitem
 with no schema binding;
 ```
 
-Now execute the query provided to access data in S3 with Redshift Spectrum and join with local tables in Amazon Redshift seamlessly using the views you just created. Please have some patience, the query execution should take approximately 3 minutes to execute. Notice the query is using the views vw_lineitem and vw_orders instead of the tables. Both views query data using tables in Redshift and also external tables using Redshift Spectrum. Depending on the date parameters passed in the query, it will retrieve data from either S3 Data Lake or Amazon Redshift. 
+Now execute the query provided to access data in S3 with Redshift Spectrum and join with local tables in Amazon Redshift seamlessly using the views you just created. Please have some patience, the query execution should take approximately 3 minutes to execute. Notice the query is using the views `vw_lineitem` and `vw_orders` instead of the tables. Both views query data using tables in Redshift and external tables using Redshift Spectrum. Depending on the date parameters passed in the query, it will retrieve data from either S3 Data Lake or Amazon Redshift. 
 
 ```SQL
 select
@@ -252,7 +262,7 @@ order by
 ```
 
 
-The following query will access tables **orders** and **lineitem** using Redshift Spectrum to access the data lake on S3 and will join with a customer table local on Redshift. You can use either the view or directedly access the external table. Just make sure to reference the table with the schema spectrum. Notice the shema spectrum is qualified before the table names. 
+The following query will access tables **orders** and **lineitem** using Amazon Redshift Spectrum to access the data lake on S3 and join with a customer table stored localy on Amazon Redshift. You can use either the view or directedly access the external table. Just make sure to reference the table with the schema spectrum. Notice the schema spectrum is specified before the table names. 
 
 ```SQL
 /* 12 */
@@ -281,7 +291,7 @@ order by
 limit 10;
 ```
 
-Lastly, you will execute a query againt table `lineitem` using a parameter field that has the data paritioned on S3. Redshift Spectrum will make the use of parittioning on S3 to limit the number of files the query has to scan. 
+Lastly, you will execute a query againt table `lineitem` using a parameter field that has the data paritioned on S3. Redshift Spectrum will make the use of partitioning on S3 to limit the number of scanned files on S3  
 
 ```SQL
 select
@@ -307,7 +317,7 @@ order by
 	l_linestatus;
 ```
 
-Now you will run the **EXPLAIN** command to retrieve the execution plan for the query. Notice that there is a filter by the partition defined in the predicate. 
+Now you will run the **EXPLAIN** command to retrieve the execution plan for the query. Notice that there is a filter by the partition defined in the predicate. < '1994-06'
 
 ```SQL
 EXPLAIN (select
