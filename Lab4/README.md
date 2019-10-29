@@ -6,7 +6,7 @@ In this lab, you will use external tables to query data stored in Amazon S3 usin
 
 ## Contents
   - [Create external database and schema](#create-external-database-and-schema)
-  - [Create clawler Job using AWS Glue](#create-clawler-job-using-aws-glue)
+  - [Create crawler Job using AWS Glue](#create-crawler-job-using-aws-glue)
   - [Running the crawler Job](#running-the-crawler-Job)
   - [Querying Data on S3 using Redshift Spectrum](#querying-data-on-s3-using-redshift-spectrum)
   - [After you finish all the Labs](#after-you-finish-all-the-labs)
@@ -25,9 +25,9 @@ Log in to the AWS Console. On AWS console main page, go to Services and select A
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/gluedatabase.jpg "Database Name")
 
 
-## Create clawler Job using AWS Glue
+## Create crawler Job using AWS Glue
 
-After creating the database in AWS Glue, you will now create a crawler job that will scan an S3 bucket where the parquet files are stored and then create external tables automatically for you with correct properties. Later you will query these external tables in Amazon Redshift Spectrum. The integration with Data Lake on S3 will allow you to query data on tables stored either on Amazon Redshift or S3 using Amazon Redshift Spectrun through external tables. 
+After creating the database in AWS Glue, you will now create a crawler job that will scan an S3 bucket where the parquet files are stored and then create external tables automatically for you with correct properties. Later you will query these external tables in Amazon Redshift Spectrum. The integration with Data Lake on S3 will allow you to query data on tables stored either on Amazon Redshift or S3 using Amazon Redshift Spectrum through external tables. 
 
 While still in the AWS Glue console, choose `Crawlers` on the left-hand side and then **`Add crawler`**
 
@@ -48,7 +48,7 @@ On **`Add a data store`**  select S3 as your data store, select the option **`Sp
 
 In the **`Add another data store`** leave the option **`No`** selected and choose next: 
 
-In the **`Choose an IAM role`** choose the option **`Create an IAM role`**. Specicy the role name in the field and choose `Next`.
+In the **`Choose an IAM role`** choose the option **`Create an IAM role`**. Provide the role name in the field and choose `Next`.
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/glueIAMRole.jpg "Create IAM role")
 
