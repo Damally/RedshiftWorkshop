@@ -49,10 +49,11 @@ In the Review, scroll down to the end of the page and check the option `I acknow
 You will need to install a client tool to be able to connect on your Amazon Redshift Cluster. The following client tools are suggested for this Lab. Please feel free to use any tool you prefer. If you are familiar with Postgres command line client tool (psql), you can also use as your client tool. 
 
 
-
+* [TablePlus](https://tableplus.com/) - Java is not required run this client tool. 
 * [DB Beaver](https://dbeaver.io/download/)
 * [WorkbenchJ](https://www.sql-workbench.eu/downloads.html) 
 * [Aginity - Windows Only](https://www.aginity.com/main/workbench-for-amazon-redshift/)
+
 
 
 
