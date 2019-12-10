@@ -8,9 +8,12 @@ In this lab you will launch a new Redshift Cluster, Install the client tool of y
   - [Installing client tool](#Installing-client-tool)
   - [Connecting to your Redshift Cluster](#Connecting-to-your-Redshift-Cluster)
 
+**Important**
+If you are attending one of the Redshift Day at AWS Loft and you were provided an AWS account for the labs. Please skip the Cloud Formation and Launching a Redshift Cluster. Start from **[Installing client tool](#Installing-client-tool)** 
 
 ## Prerequisites
 In this lab, you will launch a Redshift Cluster in your account using a Cloud Formation template provided in the link bellow. For better performance and to avoid cost transfer between Amazon Redshift cluster and S3, make sure you are in the US-EAST-1 region.
+
 
 
 ## Cloud Formation
