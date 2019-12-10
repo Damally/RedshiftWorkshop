@@ -76,9 +76,9 @@ Use the connection information to access your cluster.
 
 Credentials to log into the Redshift cluster.  
 
-**Username:** `user name` (user name you defined in the CloudFormation step.)  
+**Username:** `dwuser`  
 
-**Password:**  `password` (password you defined in the CloudFormation step.)
+**Password:**  `redshiftDay2019` 
 
 
 You should now connect to your Amazon Redshift Cluster. You now can move to the Lab 2. 
