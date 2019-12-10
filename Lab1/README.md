@@ -59,8 +59,6 @@ You will need to install a client tool to be able to connect on your Amazon Reds
 * [Aginity - Windows Only](https://www.aginity.com/main/workbench-for-amazon-redshift/)
 
 
-
-
 ## Connecting to your Redshift Cluster
 
 On AWS console main page, go to Services and select Amazon Redshift. Alternatively, type Redshift in the search field and choose Amazon Redshift when you see in the results.
