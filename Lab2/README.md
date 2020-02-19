@@ -45,7 +45,7 @@ After downloading the `copy.sql` file, open the file using the client tool of yo
 **`Important step`**, replace 'iam_role' with the IAM role assigned to your Redshift cluster in all the COPY commands in your script. (see COPY command example bellow) 
 
 ```sql
-COPY nation FROM 's3://reinvent-hass/redshiftdata//nation/nation_'
+COPY nation FROM 's3://reinvent-hass/redshiftdata/nation/nation_'
 iam_role 'arn:aws:iam::xxxxxxxxxxxx:role/MyRedshiftRole'
 gzip delimiter '|'
 IGNOREHEADER 1;
