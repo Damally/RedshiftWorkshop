@@ -53,91 +53,62 @@ Note: This portion of the lab will take ~45 minutes to complete based on the dat
 ```
 https://console.aws.amazon.com/redshift/home?#cluster-list
 ```
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations8.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations8.png "Cluster Encryption 1")
 
 2. Select *KMS* for the database encryption and then click *Modify*.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations9.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations9.png "Cluster Encryption 2")
 
 4. Notice your cluster enters a *resizing* status.  The process of encrypting your cluster is similar to resizing your cluster using the classic resize method.  All data is read, encrypted and re-written. During this time, the cluster is still avialable for read queries, but not write queries.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations10.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations10.png "Cluster Encryption 3")
 
 5. You should also receive an email notification about the cluster resize because of the event subscription we setup earlier.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations11.png></td></tr></table>
-{{< /html.inline >}}
+
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations11.png "Cluster Encryption 4")
 
 ## Cross Region Snapshots
 1. Navigate to your Redshift Cluster list.  Select your cluster and click on *Backup* -> *Configure Cross-region snapshots*.
 ```
 https://console.aws.amazon.com/redshift/home?#cluster-list
 ```
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations12.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations12.png "Cross Region Snapshots")
 
 2. Select the *Yes* radio button to enable the copy.  Select the destination region of *us-east-2*.  Because the cluster is encrypted you must establish a grant in the other region to allow the snapshot to be re-encrypted.  Select *No* for the Existing Snapshot Copy Grant.  Name the Snapshot Copy Grant with the value *SnapshotGrant*.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations13.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations13.png "Cross Region Snapshots2")
 
 3. To demonstrate the cross-region replication, initiate a manual backup.  Click on *Backup* -> *Take Snapshot*.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations14.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations14.png "Cross Region Snapshot3")
 
 4. Name the snapshot *CRRBackup* and click *Create*.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations15.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations15.png "Cross Region Snapshots4")
 
 5. Navigate to your list of snapshots and notice the snapshot is being created. 
 ```
 https://console.aws.amazon.com/redshift/home?#snapshots:id=;cluster=
 ```
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations16.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations16.png "Cross Region Snapshots5")
 
 6. Wait for the snapshot to finish being created.  The status will be *available*.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations17.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations17.png "Cross Region Snapshots6")
 
 7. Navigate to the us-east-2 region by select *Ohio* from the region drop down, or navigate to the following link.  Notice that the snapshot is available and is in a *copying* status. 
 ```
 https://us-east-2.console.aws.amazon.com/redshift/home?region=us-east-2#snapshots:id=;cluster=
 ```
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations18.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations18.png "Cross Region Snapshots7")
 
 ## Elastic Resize
 Note: This portion of the lab will take ~15 minutes to complete based on the data loaded in [LAB 2 - Creating Redshift Clusters](../lab2.html).  Please plan accordingly.
 1. Navigate to your Redshift Cluster list.  Select your cluster and click on *Cluster* -> *Resize*.  Note, if you don't see your cluster, you may have to change the *Region* drop-down.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations19.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations19.png "Elastic Resize 1")
 
 2. Ensure the *Elastic Resize* radio is selected.  Choose the *New number of nodes*, and click *Resize*.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations20.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations20.png "Elastic Resize 2")
 
 3. When the resize operation begins, you'll see the Cluster Status of *prep-for-resize*.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations21.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations21.png "Elastic Resize 3")
 
 4. When the operation completes, you'll see the Cluster Status of *available* again.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations22.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations22.png "Elastic Resize 4")
 
 ## Before You Leave
 If you are done using your cluster, please think about decommissioning it to avoid having to pay for unused resources.
