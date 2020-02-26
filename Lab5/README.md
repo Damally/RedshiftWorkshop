@@ -23,39 +23,28 @@ This lab assumes you have launched a Redshift cluster.  If you have not launched
 ```
 https://console.aws.amazon.com/redshift/home?#events:cluster=
 ``` 
-{{< html.inline >}}
-<table><tr><td><img src="./images/operations1.png"></td></tr></table> 
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations1.png "Event Subscription")
 
 2. Click on the *Subscriptions* tab and then click on the *Create Event Subscription* button.
-{{< html.inline >}}
-<table><tr><td><img src="../images/operations2.png"></td></tr></table> 
-{{< /html.inline >}}
+
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations2.png "Event Subscription2")
 
 3. Create a subscription for *any* severity *management* notification on *any cluster*.   Notice the types of event on the right you will recieve a notification for.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations3.png></td></tr></table>
-{{< /html.inline >}}
+
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations3.png "Event Subscription3")
 
 4. Name the subscription *ClusterManagement* and click *Next*.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations4.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations4.png "Event Subscription4")
 
 5. Select the *Create New Topic* tab and enter the topic name *ClusterManagement*.  Add your email address and click *Add Recipient*.  Finally, click *Create*.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations5.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations5.png "Event Subscription5")
 
 6. You will recieve an email shortly.  Click on the *Confirm subscription* link in the email.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations6.png></td></tr></table>
-{{< /html.inline >}}
+
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations6.png "Event Subscription6")
 
 7. The link should take you to a final confirmation page confirming the subscription.
-{{< html.inline >}}
-<table><tr><td><img src=../images/operations7.png></td></tr></table>
-{{< /html.inline >}}
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations7.png "Event Subscription7")
 
 ## Cluster Encryption
 Note: This portion of the lab will take ~45 minutes to complete based on the data loaded in [LAB 2 - Creating Redshift Clusters](../lab2.html).  Please plan accordingly.
