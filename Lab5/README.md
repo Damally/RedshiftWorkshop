@@ -1,10 +1,3 @@
-+++
-title = "Operations"
-date = 2020-01-22T16:27:02-08:00
-weight = 7
-pre = "<b>7. </b>"
-+++
-
 In this lab, we step through some common operations a Redshift Administrator may have to do to maintain their Redhshift environment.
 
 ## Contents
