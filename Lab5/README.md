@@ -24,12 +24,12 @@ This lab assumes you have launched a Redshift cluster.  If you have not launched
 https://console.aws.amazon.com/redshift/home?#events:cluster=
 ``` 
 {{< html.inline >}}
-<table><tr><td><img src="/images/operations1.png"></td></tr></table> 
+<table><tr><td><img src="./images/operations1.png"></td></tr></table> 
 {{< /html.inline >}}
 
 2. Click on the *Subscriptions* tab and then click on the *Create Event Subscription* button.
 {{< html.inline >}}
-<table><tr><td><img src=../images/operations2.png></td></tr></table> 
+<table><tr><td><img src="../images/operations2.png"></td></tr></table> 
 {{< /html.inline >}}
 
 3. Create a subscription for *any* severity *management* notification on *any cluster*.   Notice the types of event on the right you will recieve a notification for.
