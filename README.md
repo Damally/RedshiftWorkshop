@@ -10,4 +10,5 @@ Amazon Redshift is cloud-based modern data warehouse designed to deliver fast qu
 |[2 - Creating Tables and Loading Data into Amazon Redshift](Lab2/README.md)           |Learn how to create tables and Load data into Amazon Redshift cluster.|
 |[3 - Querying local tables in Amazon Redshift](Lab3/README.md)        |You learn how to retrieve table metadata to check distribution style, run queries in local tables, and how to identify slow performance queries|
 |[4 - Querying S3 Data Lake using Redshift Spectrum](Lab4/README.md)      | You learn how to query data in your data warehouse and exabytes of data in your S3 data lake, using Redshift Spectrum |
-|[5 - Remove AWS resources created for the Lab](/cleanresources.md)      | Make sure you remove all the resources created at the end of the labs to avoid unexpected charges |
+|[5 - Operations](Lab5/README.md)      | Step through some common operations a Redshift Administrator may have to do to maintain their Redhshift environment including Event Subscriptions, Cluster Encryption, Cross Region Snapshots, and Elastic Resize |
+|[6 - Remove AWS resources created for the Lab](/cleanresources.md)      | Make sure you remove all the resources created at the end of the labs to avoid unexpected charges |
