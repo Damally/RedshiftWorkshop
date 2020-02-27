@@ -3,7 +3,6 @@ In this lab, we step through some common operations a Redshift Administrator may
 ## Contents
 * [Before You Begin](#before-you-begin)
 * [Cluster Encryption](#cluster-encryption)
-* [Cross Region Snapshots](#cross-region-snapshots)
 * [Elastic Resize](#elastic-resize)
 * [Before You Leave](#before-you-leave)
 
@@ -26,37 +25,6 @@ https://console.aws.amazon.com/redshift/home?#cluster-list
 4. Notice your cluster enters a *resizing* status.  The process of encrypting your cluster is similar to resizing your cluster using the classic resize method.  All data is read, encrypted and re-written. During this time, the cluster is still avialable for read queries, but not write queries.
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations10.png "Cluster Encryption 3")
 
-
-## Cross Region Snapshots
-1. Navigate to your Redshift Cluster list.  Select your cluster and click on *Backup* -> *Configure Cross-region snapshots*.
-```
-https://console.aws.amazon.com/redshift/home?#cluster-list
-```
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations12.png "Cross Region Snapshots")
-
-2. Select the *Yes* radio button to enable the copy.  Select the destination region of *us-east-2*.  Because the cluster is encrypted you must establish a grant in the other region to allow the snapshot to be re-encrypted.  Select *No* for the Existing Snapshot Copy Grant.  Name the Snapshot Copy Grant with the value *SnapshotGrant*.
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations13.png "Cross Region Snapshots2")
-
-3. To demonstrate the cross-region replication, initiate a manual backup.  Click on *Backup* -> *Take Snapshot*.
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations14.png "Cross Region Snapshot3")
-
-4. Name the snapshot *CRRBackup* and click *Create*.
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations15.png "Cross Region Snapshots4")
-
-5. Navigate to your list of snapshots and notice the snapshot is being created. 
-```
-https://console.aws.amazon.com/redshift/home?#snapshots:id=;cluster=
-```
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations16.png "Cross Region Snapshots5")
-
-6. Wait for the snapshot to finish being created.  The status will be *available*.
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations17.png "Cross Region Snapshots6")
-
-7. Navigate to the us-east-2 region by select *Ohio* from the region drop down, or navigate to the following link.  Notice that the snapshot is available and is in a *copying* status. 
-```
-https://us-east-2.console.aws.amazon.com/redshift/home?region=us-east-2#snapshots:id=;cluster=
-```
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations18.png "Cross Region Snapshots7")
 
 ## Elastic Resize
 Note: This portion of the lab will take ~15 minutes to complete based on the data loaded in [LAB 2 - Creating Redshift Clusters](../lab2.html).  Please plan accordingly.
