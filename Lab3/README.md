@@ -201,7 +201,7 @@ CREATE TABLE customer_v1 (
   c_custkey int8 NOT NULL PRIMARY KEY                      ,
   c_name varchar(25) NOT NULL                              ,
   c_address varchar(40) NOT NULL                           ,
-  c_nationkey int4 NOT NULL REFERENCES nation(n_nationkey) ,
+  c_nationkey int4 NOT NULL                                ,
   c_phone char(15) NOT NULL                                ,
   c_acctbal numeric(12,2) NOT NULL                         ,
   c_mktsegment char(10) NOT NULL                           ,
@@ -499,14 +499,14 @@ ORDER BY d.attname;
 ### Queries
 The query execution speed is also impacted by the distribution settings. This last part will issue the same query on the four versions of the order table, and analyze the time taken to execute these queries.
 
-9. Get, for the year 1995, some information on the orders passed by the customers depending on their market segment, in Asia. This query is for the first table.
+9. Get, for the year 1996, some information on the orders passed by the customers depending on their market segment, in Asia. This query is for the first table.
 ```
 SELECT c_mktsegment, COUNT(o_orderkey) AS orders_count,
 AVG(o_totalprice) AS medium_amount,
 SUM(o_totalprice) AS orders_revenue
 FROM orders_v1 o
 INNER JOIN customer_v3 c ON o.o_custkey = c.c_custkey
-WHERE o_orderdate BETWEEN '1995-01-01' AND '1995-12-31' AND
+WHERE o_orderdate BETWEEN '1996-01-01' AND '1996-12-31' AND
 c_regionname = 'ASIA'
 GROUP BY c_mktsegment;
 ```
@@ -518,7 +518,7 @@ AVG(o_totalprice) AS medium_amount,
 SUM(o_totalprice) AS orders_revenue
 FROM orders_v2 o
 INNER JOIN customer_v3 c ON o.o_custkey = c.c_custkey
-WHERE o_orderdate BETWEEN '1995-01-01' AND '1995-12-31' AND
+WHERE o_orderdate BETWEEN '1996-01-01' AND '1996-12-31' AND
 c_regionname = 'ASIA'
 GROUP BY c_mktsegment;
 ```
@@ -530,7 +530,7 @@ AVG(o_totalprice) AS medium_amount,
 SUM(o_totalprice) AS orders_revenue
 FROM orders_v3 o
 INNER JOIN customer_v3 c ON o.o_custkey = c.c_custkey
-WHERE o_orderdate BETWEEN '1995-01-01' AND '1995-12-31' AND
+WHERE o_orderdate BETWEEN '1996-01-01' AND '1996-12-31' AND
 c_regionname = 'ASIA'
 GROUP BY c_mktsegment;
 ```
