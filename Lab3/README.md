@@ -10,7 +10,6 @@
   - [Compressing and De-Normalizing](#compressing-and-de-normalizing)
   - [Distributing and Sorting](#distributing-and-sorting)
   - [Result Set Caching and Execution Plan Reuse](#result-set-caching-and-execution-plan-reuse)
-  - [Selective Filtering](#selective-filtering)
   - [Join Strategies](#join-strategies)
 
 ## Accessing Table Metadata
@@ -596,32 +595,6 @@ SELECT c_mktsegment, count(1)
 FROM Customer_v3 c
 WHERE c_mktsegment = 'BUILDING'
 GROUP BY c_mktsegment;
-```
-
-## Selective Filtering
-Redshift takes advantage of zone maps which allows the optimizer to skip reading blocks of data when it knows that the filter criteria will not be matched.   In the case of the orders_v3 table, because we have defined a sort key on the o_order_date, queries leveraging that field as a predicate will return much faster.
-
-6. Execute the following two queries noting the execution time of each.  The first query is to ensure the plan is compiled.  The second has a slightly different filter condition to ensure the result cache cannot be used.
-```
-SELECT count(1), sum(o_totalprice)
-FROM orders_v3
-WHERE o_orderdate between '1992-07-05' and '1992-07-07';
-```
-```
-SELECT count(1), sum(o_totalprice)
-FROM orders_v3
-WHERE o_orderdate between '1992-07-07' and '1992-07-09';
-```
-7. Execute the following two queries noting the execution time of each.  The first query is to ensure the plan is compiled.  The second has a slightly different filter condition to ensure the result cache cannot be used. You will notice the second query takes significantly longer than the second query in the previous step even though the number of rows which were aggregated is similar.  This is due to the first query's ability to take advantage of the Sort Key defined on the table.
-```
-SELECT count(1), sum(o_totalprice)
-FROM orders_v3
-where o_orderkey < 600001;
-```
-```
-SELECT count(1), sum(o_totalprice)
-FROM orders_v3
-where o_orderkey < 600002;
 ```
 
 ## Join Strategies
