@@ -392,7 +392,8 @@ CREATE TABLE orders_v1 (
   o_orderpriority char(15) NOT NULL                                ,
   o_clerk char(15) NOT NULL                                        ,
   o_shippriority int4 NOT NULL                                     ,
-  o_comment varchar(79) NOT NULL
+  o_comment varchar(79) NOT NULL                                   ,
+  o_yearmonth varchar(8) NOT NULL 
 ) DISTKEY (o_custkey) SORTKEY(o_orderdate);
 ```
 
@@ -416,15 +417,16 @@ This last step will use the new distribution and sort keys, and the compression 
 4. Create the orders table using the recommended compression propositions, keeping DISTKEY to customer key and SORTKEY to order date.  Note: Encoding has not been added to the order date field as per the best practices because the order date is used as a sort key.
 ```
 CREATE TABLE orders_v2 (
-  o_orderkey int8 NOT NULL PRIMARY KEY ENCODE ZSTD                 ,
-  o_custkey int8 NOT NULL ENCODE ZSTD								               ,
+  o_orderkey int8 NOT NULL PRIMARY KEY ENCODE AZ64                 ,
+  o_custkey int8 NOT NULL ENCODE AZ64				                       ,
   o_orderstatus char(1) NOT NULL ENCODE ZSTD                       ,
-  o_totalprice numeric(12,2) NOT NULL ENCODE ZSTD                  ,
-  o_orderdate date NOT NULL                                        ,
+  o_totalprice numeric(12,2) NOT NULL ENCODE AZ64                  ,
+  o_orderdate date NOT NULL ENCODE AZ64                            ,
   o_orderpriority char(15) NOT NULL ENCODE ZSTD                    ,
   o_clerk char(15) NOT NULL ENCODE ZSTD                            ,
-  o_shippriority int4 NOT NULL ENCODE ZSTD                         ,
-  o_comment varchar(79) NOT NULL ENCODE ZSTD
+  o_shippriority int4 NOT NULL ENCODE AZ64                         ,
+  o_comment varchar(79) NOT NULL ENCODE ZSTD                       ,
+  o_yearmonth varchar(8) NOT NULL ENCODE ZSTD
 ) DISTKEY (o_custkey) SORTKEY(o_orderdate);
 ```
 
@@ -448,7 +450,8 @@ CREATE TABLE orders_v3 (
   o_orderpriority char(15) NOT NULL ENCODE ZSTD                        ,
   o_clerk char(15) NOT NULL ENCODE ZSTD                                ,
   o_shippriority int4 NOT NULL ENCODE ZSTD                             ,
-  o_comment varchar(79) NOT NULL ENCODE ZSTD
+  o_comment varchar(79) NOT NULL ENCODE ZSTD                           , 
+  o_yearmonth varchar(8) NOT NULL ENCODE ZSTD
 ) DISTSTYLE ALL;
 ```
 
