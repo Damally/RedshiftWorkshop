@@ -2,7 +2,6 @@ In this lab, we step through some common operations a Redshift Administrator may
 
 ## Contents
 * [Before You Begin](#before-you-begin)
-* [Event Subscriptions](#event-subscriptions)
 * [Cluster Encryption](#cluster-encryption)
 * [Cross Region Snapshots](#cross-region-snapshots)
 * [Elastic Resize](#elastic-resize)
@@ -11,33 +10,6 @@ In this lab, we step through some common operations a Redshift Administrator may
 ## Before You Begin
 This lab assumes you have launched a Redshift cluster.  If you have not launched a cluster, see [LAB 1 - Creating Redshift Clusters](../lab1.html).
 
-## Event Subscriptions
-1. Navigate to your Redshift Events page.  Notice the *Events* involved with creating the cluster.  
-```
-https://console.aws.amazon.com/redshift/home?#events:cluster=
-``` 
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations1.png "Event Subscription")
-
-2. Click on the *Subscriptions* tab and then click on the *Create Event Subscription* button.
-
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations2.png "Event Subscription2")
-
-3. Create a subscription for *any* severity *management* notification on *any cluster*.   Notice the types of event on the right you will recieve a notification for.
-
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations3.png "Event Subscription3")
-
-4. Name the subscription *ClusterManagement* and click *Next*.
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations4.png "Event Subscription4")
-
-5. Select the *Create New Topic* tab and enter the topic name *ClusterManagement*.  Add your email address and click *Add Recipient*.  Finally, click *Create*.
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations5.png "Event Subscription5")
-
-6. You will recieve an email shortly.  Click on the *Confirm subscription* link in the email.
-
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations6.png "Event Subscription6")
-
-7. The link should take you to a final confirmation page confirming the subscription.
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations7.png "Event Subscription7")
 
 ## Cluster Encryption
 Note: This portion of the lab will take ~45 minutes to complete based on the data loaded in [LAB 2 - Creating Redshift Clusters](../lab2.html).  Please plan accordingly.
