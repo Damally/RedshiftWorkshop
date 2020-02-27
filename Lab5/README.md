@@ -26,9 +26,6 @@ https://console.aws.amazon.com/redshift/home?#cluster-list
 4. Notice your cluster enters a *resizing* status.  The process of encrypting your cluster is similar to resizing your cluster using the classic resize method.  All data is read, encrypted and re-written. During this time, the cluster is still avialable for read queries, but not write queries.
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations10.png "Cluster Encryption 3")
 
-5. You should also receive an email notification about the cluster resize because of the event subscription we setup earlier.
-
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/operations11.png "Cluster Encryption 4")
 
 ## Cross Region Snapshots
 1. Navigate to your Redshift Cluster list.  Select your cluster and click on *Backup* -> *Configure Cross-region snapshots*.
