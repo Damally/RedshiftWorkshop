@@ -36,8 +36,18 @@ In the `Configure stack options`, Click Next
 
 In the Review, scroll down to the end of the page and check the option `I acknowledge that AWS CloudFormation might create IAM resources.` to acknowledge the creation of IAM resources and click Create Stack. Wait a few minutes for the cluster to become available.
 
-![Cloud Formation Acknowledgment](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/CloudFormationAck.jpg "Cloud Formation Acknowledgment")
+Use the connection information to access your cluster. 
 
+Credentials and information to log into the Redshift cluster.  
+
+**Database Name** `DEV`
+
+**Username:** `dwuser`  
+
+**Password:**  `redshiftDay2019` 
+
+
+![Cloud Formation Acknowledgment](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/CloudFormationAck.jpg "Cloud Formation Acknowledgment")
 
 
 ## Connecting to your Redshift Cluster
@@ -47,21 +57,7 @@ In the Redshift dashboard, choose Clusters on the left-hand side. You should see
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/lab1-connect1.jpg "Logo Title Text 1")
 
-Copy the endpoint details and save it to connect on the cluster. The endpoint will look similar to this one `redshiftday.xxxxxxxxxx.us-east-1.redshift.amazonaws.com:5439`
 
-You may need the JDBC URL depending on the tool you are using to connect to the Redshift Cluster. Scroll down on the same page and look for JDBC URL.  
-
-JDBC URL will look similar to the JDBC URK bellow;  
-
-`jdbc:redshift:/redshiftday.xxxxxxxxxx.us-east-1.redshift.amazonaws.com:5439/dev`
-
-Use the connection information to access your cluster. 
-
-Credentials to log into the Redshift cluster.  
-
-**Username:** `dwuser`  
-
-**Password:**  `redshiftDay2019` 
 
 
 You should now connect to your Amazon Redshift Cluster. You now can move to the Lab 2. 
