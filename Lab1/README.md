@@ -48,7 +48,7 @@ In the Redshift dashboard, choose Clusters on the left-hand side. You should see
 
 Use the connection information to access your cluster. 
 
-Credentials and information to log into the Redshift cluster.  
+**Cluster** `redshiftday`
 
 **Database Name** `DEV`
 
