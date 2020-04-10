@@ -45,7 +45,7 @@ In the Review, scroll down to the end of the page and check the option `I acknow
 On AWS console main page, go to Services and select Amazon Redshift. Alternatively, type Redshift in the search field and choose Amazon Redshift when you see in the results.
 In the Redshift dashboard, choose Clusters on the left-hand side. You should see your cluster recently launched listed with the name `redshiftday`. Check the Cluster Status. You are ready to connect if the status says `available`. Choose `redshiftday` cluster to access cluster details and connections parameters. 
 
-![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/Redshift_WS_Console.jpg "Logo Title Text 1")
+![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/lab1-connect1.jpg "Logo Title Text 1")
 
 Copy the endpoint details and save it to connect on the cluster. The endpoint will look similar to this one `redshiftday.xxxxxxxxxx.us-east-1.redshift.amazonaws.com:5439`
 
