@@ -36,6 +36,16 @@ In the `Configure stack options`, Click Next
 
 In the Review, scroll down to the end of the page and check the option `I acknowledge that AWS CloudFormation might create IAM resources.` to acknowledge the creation of IAM resources and click Create Stack. Wait a few minutes for the cluster to become available.
 
+
+![Cloud Formation Acknowledgment](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/CloudFormationAck.jpg "Cloud Formation Acknowledgment")
+
+
+## Connecting to your Redshift Cluster
+
+On AWS console main page, go to Services and select Amazon Redshift. Alternatively, type Redshift in the search field and choose Amazon Redshift when you see in the results.
+In the Redshift dashboard, choose Clusters on the left-hand side. You should see your cluster recently launched listed with the name `redshiftday`. Check the Cluster Status. You are ready to connect if the status says `available`. Choose `redshiftday` cluster to access cluster details and connections parameters. 
+
+
 Use the connection information to access your cluster. 
 
 Credentials and information to log into the Redshift cluster.  
@@ -46,14 +56,6 @@ Credentials and information to log into the Redshift cluster.
 
 **Password:**  `redshiftDay2019` 
 
-
-![Cloud Formation Acknowledgment](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/CloudFormationAck.jpg "Cloud Formation Acknowledgment")
-
-
-## Connecting to your Redshift Cluster
-
-On AWS console main page, go to Services and select Amazon Redshift. Alternatively, type Redshift in the search field and choose Amazon Redshift when you see in the results.
-In the Redshift dashboard, choose Clusters on the left-hand side. You should see your cluster recently launched listed with the name `redshiftday`. Check the Cluster Status. You are ready to connect if the status says `available`. Choose `redshiftday` cluster to access cluster details and connections parameters. 
 
 ![alt text](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/lab1-connect1.jpg "Logo Title Text 1")
 
