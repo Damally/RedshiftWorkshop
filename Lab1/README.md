@@ -65,6 +65,7 @@ Credentials to log into the Redshift cluster.
 
 
 You should now connect to your Amazon Redshift Cluster. You now can move to the Lab 2. 
+
 [2 - Creating Tables and Loading Data into Amazon Redshift](Lab2/README.md)
 
 **Important** If you leave earlier or don't have plans to complete the remaining Labs. Make sure you delete the resources created in your acoount to avoid any unespected charges. Please refer to [Remove CloudFormation Stack](https://github.com/andrehass/RedshiftWorkshop/blob/master/cleanresources.md) for instructions on how to remove the CloudFormation Stack.  
