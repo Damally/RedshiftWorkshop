@@ -8,9 +8,6 @@ In this lab you will launch a new Redshift Cluster, Install the client tool of y
   - [Installing client tool](#Installing-client-tool)
   - [Connecting to your Redshift Cluster](#Connecting-to-your-Redshift-Cluster)
 
-[comment]: <> ### **Important**
-
-[comment]: <> If you are attending one of the Redshift Days at AWS Loft and you were provided an AWS account for the labs. [comment]: <> Please skip the Cloud Formation and Launching a Redshift Cluster steps. Start from **[Installing client [comment]: <> tool](#Installing-client-tool)** 
 
 ## Prerequisites
 In this lab, you will launch a Redshift Cluster in your account using a Cloud Formation template provided in the link bellow. For better performance and to avoid cost transfer between Amazon Redshift cluster and S3, make sure you are in the US-EAST-1 region.
@@ -35,28 +32,12 @@ Go ahead and click on `Launch Stack` to launch a Redshift Cluster in your accoun
 
 [![Launch](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=RedshiftDay&templateURL=https://s3.amazonaws.com/reinvent-hass/code/redshiftTemplate.json)  
 
-On Specify stack details, provide a `MasterUserName` and `MasterUserPassword` of your choice. Leave all the other parameters unchanged and choose next. 
-
-MasterUserPassword Must contain at least 1 lowercase letter. Password may not contain ",/,@, or unprintable characters.
-
-![Cloud Formation](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/CloudFormationParameter1.jpg "Cloud Formation Template")
-
 In the `Configure stack options`, Click Next 
 
 In the Review, scroll down to the end of the page and check the option `I acknowledge that AWS CloudFormation might create IAM resources.` to acknowledge the creation of IAM resources and click Create Stack. Wait a few minutes for the cluster to become available.
 
 ![Cloud Formation Acknowledgment](https://github.com/andrehass/RedshiftWorkshop/blob/master/Images/CloudFormationAck.jpg "Cloud Formation Acknowledgment")
 
-
-## Installing client tool
-
-You will need to install a client tool to be able to connect on your Amazon Redshift Cluster. The following client tools are suggested for this Lab. Please feel free to use any tool you prefer. If you are familiar with Postgres command line client tool (psql), you can also use as your client tool. 
-
-
-* [TablePlus](https://tableplus.com/) - Java is not required run this client tool. 
-* [DB Beaver](https://dbeaver.io/download/)
-* [WorkbenchJ](https://www.sql-workbench.eu/downloads.html) 
-* [Aginity - Windows Only](https://www.aginity.com/main/workbench-for-amazon-redshift/)
 
 
 ## Connecting to your Redshift Cluster
